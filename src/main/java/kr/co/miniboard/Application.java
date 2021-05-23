@@ -1,4 +1,4 @@
-package com.botduo.board.springboot;
+package kr.co.miniboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
