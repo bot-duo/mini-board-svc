@@ -1,0 +1,8 @@
+com/example/mini_board/MiniBoardApplication.java
+ com.example.mini_board.MiniBoardApplication
+com/example/mini_board/repository/UserRepository.java
+ com.example.mini_board.repository.UserRepository
+com/example/mini_board/model/User.java
+ com.example.mini_board.model.User
+com/example/mini_board/cotroller/UserController.java
+ com.example.mini_board.cotroller.UserController

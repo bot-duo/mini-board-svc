@@ -1,0 +1,2 @@
+com/example/mini_board/MiniBoardApplicationTests.java
+ com.example.mini_board.MiniBoardApplicationTests
