@@ -1,0 +1,20 @@
+# ===================================================================
+# COMMON SPRING BOOT PROPERTIES
+# ===================================================================
+
+spring:
+  name: mini-board-svc
+  profiles:
+    active: local
+
+server:
+  port: 8080
+  servlet:
+    context-path: /mini-board/api
+  error:
+    whitelabel:
+      enabled: false
+
+logging:
+  file:
+    path: /svc/logs/${spring.name}
