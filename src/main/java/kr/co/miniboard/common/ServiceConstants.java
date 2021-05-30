@@ -20,6 +20,9 @@ public class ServiceConstants {
         public static final String ERR_DBMS_003             = "ERR_DBMS_003";       // UPDATE ERROR
         public static final String ERR_DBMS_004             = "ERR_DBMS_004";       // DELETE ERROR
 
+        // 인증 관련
+        private static final String AUTHORIZATION_REQUEST_BASE_URI = "oauth2/authorization";
+
     }
 
 }

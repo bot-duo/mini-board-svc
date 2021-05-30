@@ -14,26 +14,24 @@ public class UserRspDto {
 
     // ID
     private Long id;
-
-    // 사용자 이름
+    // 이름
     private String name;
+    // 이메일
+    private String email;
+    // 사진
+    private String picture;
+    // 권한
+    private RoleDto role;
 
-    // 사용자 비밀번호
-    private String password;
-
-    // 나이
-    private Integer age;
-
-    // 주소
-    private String address;
 
     // 응답Dto 생성과 동시에 Entity값 삽입
     public UserRspDto(UserEntity entity) {
+
         this.id = entity.getId();
         this.name = entity.getName();
-        this.password = entity.getPassword();
-        this.age = entity.getAge();
-        this.address = entity.getAddress();
+        this.email = entity.getEmail();
+        this.picture = entity.getPicture();
+        this.role = entity.getRole();
     }
 
 }

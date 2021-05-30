@@ -16,7 +16,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group 'com.botduo.board'
+group 'kr.co.miniboard'
 version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -26,13 +26,12 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.projectlombok:lombok')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    compile('org.projectlombok:lombok')
+    runtimeOnly('mysql:mysql-connector-java')
     annotationProcessor(group: 'org.projectlombok',name: 'lombok')
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
-
-    compile('com.h2database:h2')
-
     testCompile('org.springframework.boot:spring-boot-starter-test')
-
 }

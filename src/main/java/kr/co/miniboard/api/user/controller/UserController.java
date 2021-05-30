@@ -8,10 +8,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @RestController
@@ -20,17 +23,37 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+    private final HttpSession httpSession;
+    private final ClientRegistrationRepository clientRegistrationRepository;
 
-    @GetMapping(value = "/name")
-    public ResponseObject getIdByName(@RequestParam(required = true) String name) {
+//    @GetMapping("/")
+//    public String index(Model model){
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+//
+//        if(user != null){
+//            model.addAttribute("userName", user.getName());
+//            model.addAttribute("userImg", user.getPicture());
+//
+//        }
+//        return "index.html";
+//    }
+
+//    @GetMapping("/test")
+//    public String test() {
+//        return "index";
+//    }
+
+    @GetMapping("/{id}")
+    public ResponseObject getUserById(@PathVariable("id") Long id){
+//        Optional<User> userOptional = userRepository.findById(id); //optional NPE를 피하기위해서 사용
 
         UserReqDto reqDto = new UserReqDto();
-        reqDto.setName(name);
+        reqDto.setId(id);
+        log.info("*** getUserById ***");
+        log.info("id : {}", id);
 
-        log.info("*** getIdByName ***");
-        log.info("name : {}", name);
-
-        return ResponseObject.builder(HttpStatus.OK, userService.getIdByName(reqDto), ServiceConstants.ResponseMessage.SUCCESS).build();
+        return ResponseObject.builder(HttpStatus.OK, userService.getUserById(reqDto), ServiceConstants.ResponseMessage.SUCCESS).build();
     }
+
 
 }
