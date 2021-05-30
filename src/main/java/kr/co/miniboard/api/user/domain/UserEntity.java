@@ -1,28 +1,23 @@
 package kr.co.miniboard.api.user.domain;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * 사용자 Entity
  * @author gyujin
  */
 @Getter
-@Builder(toBuilder = true)
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 public class UserEntity {
 
     // ID
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     // 사용자 이름
     @Column(length = 10, nullable = false)

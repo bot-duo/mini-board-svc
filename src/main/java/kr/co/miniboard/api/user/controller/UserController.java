@@ -1,5 +1,6 @@
 package kr.co.miniboard.api.user.controller;
 
+import kr.co.miniboard.api.user.model.UserReqDto;
 import kr.co.miniboard.api.user.service.UserService;
 import kr.co.miniboard.common.ResponseObject;
 import kr.co.miniboard.common.ServiceConstants;
@@ -23,10 +24,13 @@ public class UserController {
     @GetMapping(value = "/name")
     public ResponseObject getIdByName(@RequestParam(required = true) String name) {
 
+        UserReqDto reqDto = new UserReqDto();
+        reqDto.setName(name);
+
         log.info("*** getIdByName ***");
         log.info("name : {}", name);
 
-        return ResponseObject.builder(HttpStatus.OK, userService.getIdByName(name), ServiceConstants.ResponseMessage.SUCCESS).build();
+        return ResponseObject.builder(HttpStatus.OK, userService.getIdByName(reqDto), ServiceConstants.ResponseMessage.SUCCESS).build();
     }
 
 }

@@ -1,6 +1,9 @@
 package kr.co.miniboard.api.user.service.impl;
 
 import kr.co.miniboard.api.user.domain.UserEntity;
+import kr.co.miniboard.api.user.domain.UserRepository;
+import kr.co.miniboard.api.user.model.UserReqDto;
+import kr.co.miniboard.api.user.model.UserRspDto;
 import kr.co.miniboard.api.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,13 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    public UserEntity getIdByName(String name) {
-        UserEntity rspDto = null;
+    private final UserRepository userRepository;
 
-        if(null == rspDto) {
-            // 예외처리 정의 클래스 추가 필요
-            // throw ...
-        }
+    public UserRspDto getIdByName(UserReqDto reqDto) {
+
+        UserEntity userEntity = userRepository.findById(reqDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("DB 오류"));
+
+        UserRspDto rspDto = new UserRspDto(userEntity);
 
         return rspDto;
     }

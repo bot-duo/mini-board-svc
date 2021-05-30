@@ -1,6 +1,7 @@
 package kr.co.miniboard.api.user.service;
 
-import kr.co.miniboard.api.user.domain.UserEntity;
+import kr.co.miniboard.api.user.model.UserReqDto;
+import kr.co.miniboard.api.user.model.UserRspDto;
 
 /**
  * 사용자 Service
@@ -8,6 +9,6 @@ import kr.co.miniboard.api.user.domain.UserEntity;
  */
 public interface UserService {
 
-    public UserEntity getIdByName(String name);
+    public UserRspDto getIdByName(UserReqDto reqDto);
 
 }

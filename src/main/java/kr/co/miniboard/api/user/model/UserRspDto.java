@@ -1,7 +1,7 @@
 package kr.co.miniboard.api.user.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
+import kr.co.miniboard.api.user.domain.UserEntity;
 import lombok.Getter;
 
 /**
@@ -9,12 +9,11 @@ import lombok.Getter;
  * @author gyujin
  */
 @Getter
-@Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserRspDto {
 
     // ID
-    private String id;
+    private Long id;
 
     // 사용자 이름
     private String name;
@@ -27,5 +26,14 @@ public class UserRspDto {
 
     // 주소
     private String address;
+
+    // 응답Dto 생성과 동시에 Entity값 삽입
+    public UserRspDto(UserEntity entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.password = entity.getPassword();
+        this.age = entity.getAge();
+        this.address = entity.getAddress();
+    }
 
 }

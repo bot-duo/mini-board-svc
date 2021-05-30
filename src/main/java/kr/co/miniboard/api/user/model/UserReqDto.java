@@ -10,7 +10,7 @@ import lombok.Data;
 public class UserReqDto {
 
     // ID
-    private String id;
+    private Long id;
 
     // 사용자 이름
     private String name;
