@@ -1,6 +1,6 @@
 package kr.co.miniboard.api;
 
-import kr.co.miniboard.api.sample.controller.SampleController;
+/*import kr.co.miniboard.api.sample.controller.SampleController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +27,4 @@ public class SampleControllerTest {
                 .andExpect(content().string(hello));
     }
 
-}
+}*/

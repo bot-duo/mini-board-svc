@@ -7,13 +7,13 @@ spring:
   profiles:
     active: local
 
-server:
-  port: 8080
-  servlet:
-    context-path: /mini-board/api
-  error:
-    whitelabel:
-      enabled: false
+#server:
+  # port: 8080
+    #servlet:
+    #context-path: /mini-board/api
+    #error:
+      #whitelabel:
+    #enabled: false
 
 logging:
   file:

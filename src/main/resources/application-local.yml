@@ -5,10 +5,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.30.1.11:3306/MINI_BOARD?characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    #url: jdbc:mysql://172.30.1.11:3306/MINI_BOARD?characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/mini_board?characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
     hikari:
       username: root
-      password: root
+      password: qewr1324qewr
       maximum-pool-size: 3
   jpa:
     database: mysql
@@ -20,3 +21,4 @@ server:
 
 logging:
   config: classpath:logback/logback-local.xml
+
