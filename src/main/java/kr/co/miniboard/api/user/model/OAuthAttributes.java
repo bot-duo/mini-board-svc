@@ -32,16 +32,11 @@ public class OAuthAttributes {
     }
 
     //OAuth2User에서 반환하는 사용자 정보는 Map이기 때문에 값 하나하나를 변환해야함
-<<<<<<< HEAD
     public static OAuthAttributes of(String registrationId, String userNameAttributeName,String access_token, Map<String, Object> attributes){
-=======
-    public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes){
 
         if("kakao".equals(registrationId)) {
             return ofKakao("id", attributes);
         }
-
->>>>>>> 8ef5f2395004c3b6bba31daadcee6e1ace3e0356
         return ofGoogle(userNameAttributeName, attributes);
     }
 
