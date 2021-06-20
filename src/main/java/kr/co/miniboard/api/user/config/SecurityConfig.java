@@ -1,4 +1,4 @@
-package kr.co.miniboard.application.config;
+package kr.co.miniboard.api.user.config;
 
 import kr.co.miniboard.api.user.model.RoleDto;
 import kr.co.miniboard.api.user.service.CustomOAuth2UserService;
@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and()
-                .logout().logoutSuccessUrl("/")         //로그아웃시 이동할 주소
+                    .logout().clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/")         //로그아웃시 이동할 주소
 
                 .and()
                 //OAuth2 로그인 기능에 대한 설정의 진입점 소셜 로그인 성공시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록하는 곳이 UserService

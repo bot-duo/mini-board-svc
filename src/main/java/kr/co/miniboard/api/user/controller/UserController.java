@@ -27,7 +27,7 @@ public class UserController {
 
     private final UserService userService;
     private final HttpSession httpSession;
-    private final ClientRegistrationRepository clientRegistrationRepository;
+    /*private final ClientRegistrationRepository clientRegistrationRepository;*/
 
     @GetMapping("/")
     public String login(Model model){
@@ -40,7 +40,6 @@ public class UserController {
         }
         return "login.html";
     }
-
 //    @GetMapping("/test")
 //    public String test() {
 //        return "index";
