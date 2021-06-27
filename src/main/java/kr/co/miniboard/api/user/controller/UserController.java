@@ -4,12 +4,15 @@ import kr.co.miniboard.api.user.model.SessionUserDto;
 import kr.co.miniboard.api.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Slf4j
 @Controller
@@ -22,35 +25,28 @@ public class UserController {
     /*private final ClientRegistrationRepository clientRegistrationRepository;*/
 
     @GetMapping("/")
-    public ModelAndView login(Model model){
+    public ModelAndView login(ModelAndView model){
         SessionUserDto user = (SessionUserDto) httpSession.getAttribute("user");
-        ModelAndView mv = new ModelAndView();
-
-        mv.setViewName("login.html");
-
+        model.setViewName("login.html");
         if(user != null){
-            mv.addObject("userName", user.getName());
-            mv.addObject("userImg", user.getPicture());
-
+            model.addObject("userName", user.getName());
+            model.addObject("userImg", user.getPicture());
+            System.out.println("profile = " + user.getPicture());
+            System.out.println("userNAme = " + user.getName());
         }
-        return mv;
+        return model;
+
     }
-//    @GetMapping("/test")
-//    public String test() {
-//        return "index";
-//    }
 
-    /*@GetMapping("/{id}")
-    public ResponseObject getUserById(@PathVariable("id") Long id){
-        Optional<User> userOptional = userRepository.findById(id); //optional NPE를 피하기위해서 사용
-
-        UserReqDto reqDto = new UserReqDto();
-        reqDto.setId(id);
-        log.info("*** getUserById ***");
-        log.info("id : {}", id);
-
-        return ResponseObject.builder(HttpStatus.OK, userService.getUserById(reqDto), ServiceConstants.ResponseMessage.SUCCESS).build();
-    }*/
-
+    @GetMapping("/exit")
+    public void logout(HttpServletRequest request, HttpServletResponse response){
+        new SecurityContextLogoutHandler().logout(request,null,null);
+        try{
+            response.sendRedirect(request.getHeader("referer"));
+        }catch(IOException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
