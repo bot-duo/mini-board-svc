@@ -1,21 +1,13 @@
 package kr.co.miniboard.api.user.controller;
 
 import kr.co.miniboard.api.user.model.SessionUserDto;
-import kr.co.miniboard.api.user.model.UserReqDto;
 import kr.co.miniboard.api.user.service.UserService;
-import kr.co.miniboard.common.ResponseObject;
-import kr.co.miniboard.common.ServiceConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,15 +22,18 @@ public class UserController {
     /*private final ClientRegistrationRepository clientRegistrationRepository;*/
 
     @GetMapping("/")
-    public String login(Model model){
+    public ModelAndView login(Model model){
         SessionUserDto user = (SessionUserDto) httpSession.getAttribute("user");
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("login.html");
 
         if(user != null){
-            model.addAttribute("userName", user.getName());
-            model.addAttribute("userImg", user.getPicture());
+            mv.addObject("userName", user.getName());
+            mv.addObject("userImg", user.getPicture());
 
         }
-        return "login.html";
+        return mv;
     }
 //    @GetMapping("/test")
 //    public String test() {
