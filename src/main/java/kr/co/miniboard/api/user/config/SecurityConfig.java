@@ -4,8 +4,11 @@ import kr.co.miniboard.api.user.model.RoleDto;
 import kr.co.miniboard.api.user.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 //스프링 시큐리티 설정
 @RequiredArgsConstructor
@@ -13,6 +16,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
+
+    @Override
+    public void configure(WebSecurity web) throws Exception{
+        web.ignoring().antMatchers("/**");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -28,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and()
-                    .logout().clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/exit")         //로그아웃시 이동할 주소
-
+                    .logout().invalidateHttpSession(true).deleteCookies("JSESSIONID")        //로그아웃시 이동할 주소
+                    .clearAuthentication(true).logoutSuccessUrl("/login").deleteCookies("JSESSIONID")   //로그아웃시 이동할 주소
                 .and()
                 //OAuth2 로그인 기능에 대한 설정의 진입점 소셜 로그인 성공시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록하는 곳이 UserService
                 //사용자 정보를 가져온 후 진행하고싶은 기능을 명시
