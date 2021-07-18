@@ -13,6 +13,8 @@
             <img style="width:45px; height:45px" src="${userImg}" th:src="${userImg}"
                  class="rounded-circle img-thumbnail img-responsive">
             <span id="login-user" th:text="${userName}">사용자</span> 님, 안녕하세요.
+            <img style="width:45px; height:45px" th:src="${userImg}"
+                 class="rounded-circle img-thumbnail img-responsive">
             <a href="/logout" class="btn btn-sm btn-info active" role="button">Logout</a>
         </div>
         <div th:if="${#strings.isEmpty(userName)}">

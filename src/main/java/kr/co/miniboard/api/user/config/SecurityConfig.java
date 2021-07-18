@@ -36,8 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and()
-                    .logout().invalidateHttpSession(true).deleteCookies("JSESSIONID")        //로그아웃시 이동할 주소
-                    .clearAuthentication(true).logoutSuccessUrl("/login").deleteCookies("JSESSIONID")   //로그아웃시 이동할 주소
+                .logout().clearAuthentication(true).invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/")//로그아웃시 이동할 주소
+
                 .and()
                 //OAuth2 로그인 기능에 대한 설정의 진입점 소셜 로그인 성공시 후속 조치를 진행할 UserService 인터페이스의 구현체를 등록하는 곳이 UserService
                 //사용자 정보를 가져온 후 진행하고싶은 기능을 명시

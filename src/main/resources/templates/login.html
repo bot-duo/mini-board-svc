@@ -13,7 +13,9 @@
             <img style="width:45px; height:45px" src="${userImg}" th:src="${userImg}"
                  class="rounded-circle img-thumbnail img-responsive">
             <span id="login-user" th:text="${userName}">사용자</span> 님, 안녕하세요.
-            <a href="/logout" class="btn btn-sm btn-info active" role="button">Logout</a>
+            <form action="/logout" method="POST">
+                <button class="btn btn-sm btn-info active" role="button">Logout</button>
+            </form>
         </div>
         <div th:if="${#strings.isEmpty(userName)}">
             <!-- 스프링 시큐리티에서 기본 제공하는 URL - 별도 컨트롤러 작성 필요 없음 -->

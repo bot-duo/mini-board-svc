@@ -1,19 +1,12 @@
 package kr.co.miniboard.api.user.controller;
 
 import kr.co.miniboard.api.user.model.SessionUserDto;
-import kr.co.miniboard.api.user.model.UserReqDto;
 import kr.co.miniboard.api.user.service.UserService;
-import kr.co.miniboard.common.ResponseObject;
-import kr.co.miniboard.common.ServiceConstants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,6 +36,7 @@ public class UserController {
             System.out.println("userNAme = " + user.getName());
         }
         return model;
+
     }
 
     @GetMapping("/login/oauth2/code/google")
