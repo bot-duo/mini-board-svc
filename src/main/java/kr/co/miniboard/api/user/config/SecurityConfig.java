@@ -1,6 +1,6 @@
 package kr.co.miniboard.api.user.config;
 
-import kr.co.miniboard.api.user.model.RoleDto;
+import kr.co.miniboard.api.user.dto.RoleDto;
 import kr.co.miniboard.api.user.service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

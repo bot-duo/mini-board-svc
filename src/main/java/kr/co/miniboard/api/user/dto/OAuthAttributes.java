@@ -1,4 +1,4 @@
-package kr.co.miniboard.api.user.model;
+package kr.co.miniboard.api.user.dto;
 
 import kr.co.miniboard.api.user.domain.UserEntity;
 import lombok.Builder;
@@ -8,18 +8,12 @@ import java.util.Map;
 
 @Getter
 public class OAuthAttributes {
-
     private Map<String, Object> attributes;
-
     private String nameAttributeKey;
-
     private String name;
-
     private String email;
-
     private String picture;
-
-    private String access_tokne;
+    private String access_token;
 
     @Builder
     public OAuthAttributes(Map<String, Object> attributes, String nameAttributeKey, String name, String email, String picture, String access_token){
@@ -28,11 +22,11 @@ public class OAuthAttributes {
         this.name = name;
         this.email = email;
         this.picture = picture;
-        this.access_tokne = access_token;
+        this.access_token = access_token;
     }
 
     //OAuth2User에서 반환하는 사용자 정보는 Map이기 때문에 값 하나하나를 변환해야함
-    public static OAuthAttributes of(String registrationId, String userNameAttributeName,String access_token, Map<String, Object> attributes){
+    public static OAuthAttributes of(String registrationId, String userNameAttributeName, String access_token, Map<String, Object> attributes){
 
         if("kakao".equals(registrationId)) {
             return ofKakao("id", attributes);
@@ -73,6 +67,7 @@ public class OAuthAttributes {
                 .email(email)
                 .picture(picture)
                 .role(RoleDto.GUEST)
+                .access_token(access_token)
                 .build();
     }
 }

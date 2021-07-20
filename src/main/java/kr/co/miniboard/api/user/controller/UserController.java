@@ -1,6 +1,6 @@
 package kr.co.miniboard.api.user.controller;
 
-import kr.co.miniboard.api.user.model.SessionUserDto;
+import kr.co.miniboard.api.user.dto.SessionUserDto;
 import kr.co.miniboard.api.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +31,8 @@ public class UserController {
         if(user != null){
             model.addObject("userName", user.getName());
             model.addObject("userImg", user.getPicture());
-            System.out.println("profile = " + user.getPicture());
-            System.out.println("userNAme = " + user.getName());
+            log.info("profile = {}", user.getPicture());
+            log.info("userName = {}", user.getName());
         }
         return model;
 

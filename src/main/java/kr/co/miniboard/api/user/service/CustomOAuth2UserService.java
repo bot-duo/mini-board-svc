@@ -1,8 +1,8 @@
 package kr.co.miniboard.api.user.service;
 
 import kr.co.miniboard.api.user.domain.UserEntity;
-import kr.co.miniboard.api.user.model.OAuthAttributes;
-import kr.co.miniboard.api.user.model.SessionUserDto;
+import kr.co.miniboard.api.user.dto.OAuthAttributes;
+import kr.co.miniboard.api.user.dto.SessionUserDto;
 import kr.co.miniboard.api.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -45,7 +45,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         System.out.println("token = " + access_token);
         // OAuthAttributes: attribute를 담을 클래스 (개발자가 생성)
-        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName,access_token, oAuth2User.getAttributes());
+        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, access_token, oAuth2User.getAttributes());
 
         UserEntity user = saveOrUpdate(attributes);
 
@@ -62,7 +62,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     //우리 테이블에 없는 정보면 insert 기존의 회원 정보가 변경되어있으면 우리 테이블 데이터 update
     private UserEntity saveOrUpdate(OAuthAttributes attributes){
         UserEntity user = userRepository.findByEmail(attributes.getEmail())
-                .map(entity -> entity.update(attributes.getName(), attributes.getPicture(), attributes.getAccess_tokne()))
+                .map(entity -> entity.update(attributes.getName(), attributes.getPicture(), attributes.getAccess_token()))
                 .orElse(attributes.toEntity());
         return userRepository.save(user);
     }
