@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -28,8 +29,14 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
+
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
+        System.out.println("token = " + userRequest.getAccessToken());
+        OAuth2AccessToken token = userRequest.getAccessToken();
+        for (String authority : token.getScopes()) {
+            System.out.println("TOKEN_KEY" + authority);
+        }
         //현재 로그인 진행 중인 서비스를 구분하는 코드
         String registrationId = userRequest
                 .getClientRegistration()

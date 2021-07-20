@@ -24,9 +24,10 @@ public class UserController {
     private final HttpSession httpSession;
     /*private final ClientRegistrationRepository clientRegistrationRepository;*/
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public ModelAndView login(ModelAndView model){
         SessionUserDto user = (SessionUserDto) httpSession.getAttribute("user");
+
         model.setViewName("login.html");
         if(user != null){
             model.addObject("userName", user.getName());
@@ -38,15 +39,9 @@ public class UserController {
 
     }
 
-    @GetMapping("/exit")
+    @GetMapping("/login/oauth2/code/google")
     public void logout(HttpServletRequest request, HttpServletResponse response){
-        new SecurityContextLogoutHandler().logout(request,null,null);
-        try{
-            response.sendRedirect(request.getHeader("referer"));
-        }catch(IOException e){
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
+        System.out.println("리스폰스 타기 완료");
     }
 
 }
