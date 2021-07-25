@@ -3,3 +3,6 @@
 build/
 
 application-oauth.properties
+filePath_IS_UNDEFINED/app.log
+filePath_IS_UNDEFINED/error.log
+src/main/resources/META-INF/additional-spring-configuration-metadata.json

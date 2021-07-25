@@ -6,18 +6,19 @@ spring:
   name: mini-board-svc
   profiles:
     active: local
-
-#server:
-  # port: 8080
-    #servlet:
-    #context-path: /mini-board/api
-    #error:
-      #whitelabel:
-    #enabled: false
   thymeleaf:
     cache: false
-    prefix: file:src/main/resources/templates/
+#    prefix: file:src/main/resources/templates/
+    prefix: classpath:/templates/
+
+server:
+  port: 8080
+  servlet:
+    context-path: /mini-board/api
+  error:
+    whitelabel:
+      enabled: false
 
 logging:
   file:
-    path: /svc/logs/${spring.name}
+  path: /svc/logs/${spring.name}

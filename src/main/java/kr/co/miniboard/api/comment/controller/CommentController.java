@@ -28,15 +28,18 @@ public class CommentController {
      * @param userEmail
      * @return
      */
-    @GetMapping("/")
-    public ResponseObject getComment(@RequestParam(required = false) Long boardNo,
+    @GetMapping(value ="/{commentNo}")
+    public ResponseObject getComment(@PathVariable(required = false) Long commentNo,
+                                     @RequestParam(required = false) Integer boardNo,
                                      @RequestParam(required = false) String userEmail) {
 
-        log.info("*** getComment ***");
+        log.info("*** getComment Parameters ***");
+        log.info("* commentNo : {}", commentNo);
         log.info("* boardNo   : {}", boardNo);
         log.info("* userEmail : {}", userEmail);
 
         CommentReqDto reqDto = new CommentReqDto();
+        reqDto.setCommentNo(commentNo);
         reqDto.setBoardNo(boardNo);
         reqDto.setUserEmail(userEmail);
 
@@ -48,10 +51,10 @@ public class CommentController {
      * @param reqDto
      * @return
      */
-    @PostMapping("/")
+    @PostMapping(value ="")
     public ResponseObject createComment(@RequestBody CommentReqDto reqDto) {
 
-        log.info("*** createComment ***");
+        log.info("*** createComment Call ***");
         commentService.createComment(reqDto);
 
         return ResponseObject.builder(HttpStatus.OK, null, ServiceConstants.ResponseMessage.SUCCESS).build();
@@ -62,10 +65,10 @@ public class CommentController {
      * @param reqDto
      * @return
      */
-    @PutMapping("/modify")
+    @PutMapping(value ="")
     public ResponseObject modifyComment(@RequestBody CommentReqDto reqDto) {
 
-        log.info("*** modifyComment ***");
+        log.info("*** modifyComment Call ***");
         commentService.modifyComment(reqDto);
 
         return ResponseObject.builder(HttpStatus.OK, null, ServiceConstants.ResponseMessage.SUCCESS).build();
@@ -76,10 +79,10 @@ public class CommentController {
      * @param reqDto
      * @return
      */
-    @DeleteMapping("/remove")
+    @DeleteMapping(value ="")
     public ResponseObject removeComment(@RequestBody CommentReqDto reqDto) {
 
-        log.info("*** removeComment ***");
+        log.info("*** removeComment Call ***");
         commentService.removeComment(reqDto);
 
         return ResponseObject.builder(HttpStatus.OK, null, ServiceConstants.ResponseMessage.SUCCESS).build();
