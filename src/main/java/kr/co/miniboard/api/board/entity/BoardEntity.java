@@ -15,10 +15,10 @@ public class BoardEntity{ //extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, name="board_ID")
+    @Column(nullable = false, name="board_no")
     private Long boardId;
 
-    @Column(nullable = false, name="user_ID")
+    @Column(nullable = false, name="user_no")
     private Long userId;
 
     @Column(name="board_title")

@@ -20,7 +20,7 @@ public class BoardController {
     private BoardService boardService;
 
     //게시판 전체 조회
-    @RequestMapping("/board/viewBoard")
+    @GetMapping("/board/viewBoard")
     public JSONObject viewBoardList(ModelAndView model){
         System.out.println("**************START viewBoardList *******************");
         System.out.println(boardService.toString());
@@ -32,7 +32,7 @@ public class BoardController {
         return jsObj;
     }
 
-    @RequestMapping("/board/viewSelectBoard")
+    @GetMapping("/board/viewSelectBoard/{id}")
     public List<BoardDto> viewSelectBoard(@RequestBody JSONObject json){
         System.out.println("**************START viewSelectBoard *******************");
         System.out.println(boardService.toString());
@@ -46,7 +46,7 @@ public class BoardController {
         return boardList;
     }
 
-    @RequestMapping("/board/addBoard")
+    @PutMapping("/board/addBoard")
     public String addBoard(@RequestBody BoardDto boardDto){
         System.out.println("**************START Boardwrite *******************");
         boardService.updateBoard(boardDto);
@@ -54,7 +54,7 @@ public class BoardController {
         return "success Add to" + boardDto;
     }
 
-    @RequestMapping("/board/deleteBoard")
+    @DeleteMapping("/board/deleteBoard")
     public String deleteBoard(@RequestBody JSONObject json){
         System.out.println("**************START deleteBoard *******************");
         String boardId = json.getAsString("boardId");
