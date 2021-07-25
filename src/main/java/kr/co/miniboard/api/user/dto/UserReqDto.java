@@ -1,4 +1,4 @@
-package kr.co.miniboard.api.user.model;
+package kr.co.miniboard.api.user.dto;
 
 import lombok.Data;
 

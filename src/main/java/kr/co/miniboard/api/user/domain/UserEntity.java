@@ -1,6 +1,6 @@
 package kr.co.miniboard.api.user.domain;
 
-import kr.co.miniboard.api.user.model.RoleDto;
+import kr.co.miniboard.api.user.dto.RoleDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

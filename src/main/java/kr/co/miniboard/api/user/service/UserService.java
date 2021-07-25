@@ -1,8 +1,8 @@
 package kr.co.miniboard.api.user.service;
 
 import kr.co.miniboard.api.user.domain.UserEntity;
-import kr.co.miniboard.api.user.model.UserReqDto;
-import kr.co.miniboard.api.user.model.UserRspDto;
+import kr.co.miniboard.api.user.dto.UserReqDto;
+import kr.co.miniboard.api.user.dto.UserRspDto;
 import kr.co.miniboard.api.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
