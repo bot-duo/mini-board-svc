@@ -48,7 +48,7 @@ public class CommentService {
      * 댓글 등록
      * @param reqDto
      */
-    public void createComment(CommentReqDto reqDto) {
+    public CommentRspDto createComment(CommentReqDto reqDto) {
 
         CommentRspDto rspDto = null;
 
@@ -61,6 +61,8 @@ public class CommentService {
         if(rspDto == null) { // 예외 처리
             throw new InternalServerErrorException(ServiceConstants.ResponseMessage.ERR_DBMS_001);
         }
+
+        return rspDto;
     }
 
     /**

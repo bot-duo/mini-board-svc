@@ -13,8 +13,8 @@ spring:
 
 server:
   port: 8080
-  servlet:
-    context-path: /mini-board/api
+#  servlet:
+#    context-path: /mini-board/api
   error:
     whitelabel:
       enabled: false

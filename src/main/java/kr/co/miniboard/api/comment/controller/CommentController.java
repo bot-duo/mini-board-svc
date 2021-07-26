@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/comment", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CommentController {
